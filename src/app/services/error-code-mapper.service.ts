@@ -1,4 +1,4 @@
-import { ErrorCodes } from "../types/errorCodes";
+import { ErrorCodes } from "../types/error-codes";
 
 export class ErrorCodeMapper {
   codes: ErrorCodes[];

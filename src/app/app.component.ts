@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ErrorCodeMapper } from './services/error-code-mapper.service';
-import { ErrorCodes } from './types/errorCodes';
+import { ErrorCodes } from './types/error-codes';
 import { Observable } from 'rxjs';
 
 @Component({
