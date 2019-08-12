@@ -2,6 +2,7 @@ import { ErrorCodes } from "../types/error-codes";
 
 export class ErrorCodeMapper {
   codes: ErrorCodes[];
+  code: string;
 
   constructor() {
     this.loadCodeTable();
@@ -11,25 +12,30 @@ export class ErrorCodeMapper {
   getCodes() {
     return this.codes;
   }
-
-  getCode(apiCode) {
-    const code = this.codes.find(c => c.apiCode == apiCode);
-    return code;
-  }
-
+  
   getUiMsg(apiCode) {
-    const code = this.codes.find(c => c.apiCode == apiCode);
-    return code.uiMsg;
+    if (!apiCode) {
+      return 'Please ender API Error code';
+    }
+    const code = this.codes.find(c => c.apiCode == apiCode.trim());
+    if (code) {
+      return code.uiMsg;
+    } else {
+      return 'No UI message was found for this API code: ' + 'apiCode';
+    }
+   
   }
 
-  getCodeByHttp(httpCode) {
-    const code = this.codes.find(c => c.httpCode == httpCode);
-    return code;
-  }
-
-  getUiMsgByHttp(httpCode) {
-    const code = this.codes.find(c => c.httpCode == httpCode);
-    return code.uiMsg;
+   getUiMsgByHttp(httpCode) {
+    if (!httpCode) {
+      return 'Please enter HTTP response code';
+    }
+    const code = this.codes.find(c => c.httpCode == httpCode.trim());
+    if (code) {
+      return code.uiMsg;
+    } else {
+      return 'No UI message was found for this HTTP code: ' + 'httpCode';
+    }
   }
 
   loadCodeTable() {

@@ -10,16 +10,38 @@ import { Observable } from 'rxjs';
 })
 export class AppComponent implements OnInit{
   codes: ErrorCodes[];
+  apiCode: string;
+  httpCode: string;
+  apiMsg: string;
+  httpMsg: string;
 
   constructor(private codeMapper: ErrorCodeMapper) {
   }
 
   ngOnInit() {
-   }
-
-  getCodes() {
-    this.codes = this.codeMapper.getCodes();
-    console.log('app.getCodes', this.codes);
   }
-  
+
+  getAllCodes() {
+    this.codes = this.codeMapper.getCodes();
+  }
+
+  onApiErrorCode() {
+    console.log('apiCode', this.apiCode);
+    if (this.apiCode) {
+      this.apiCode.trim();
+      this.apiMsg = this.codeMapper.getUiMsg(this.apiCode);
+    } 
+    
+    this.apiCode = '';
+  }
+
+  onHttpCode() {
+    if (this.httpCode) {
+      this.httpCode.trim();
+      this.httpMsg = this.codeMapper.getUiMsgByHttp(this.httpCode);
+    }
+    
+    this.httpCode = '';
+  }
+
 }

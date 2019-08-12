@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { ErrorCodeMapper } from './services/error-code-mapper.service';
@@ -9,7 +10,8 @@ import { ErrorCodeMapper } from './services/error-code-mapper.service';
     AppComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    FormsModule
   ],
   providers: [
     ErrorCodeMapper

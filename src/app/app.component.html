@@ -1,17 +1,47 @@
 <div class='row col-xs-12'>
-    <button (click)='getCodes()' class='btn btn-success btn-sm'>Retrieve All Codes</button>
+    <button (click)='getAllCodes()' class='btn btn-success btn-sm'>Retrieve All Codes</button>
 </div>
+<p style='clear:both'>&nbsp;</p>
+
 <div class="row col-xs-12" *ngIf='codes'>
-  <table>
-    <thead><tr><th>Codes</th></tr></thead>
+
+  <table style='margin: 1rem' cellspacing='3rem' border='1px'>
+    <thead>
+      <tr>
+        <th>API</th>
+        <th>HTTP</th>
+        <th>Color code</th>
+        <th>UI Message</th>
+      </tr>
+    </thead>
     <tbody>
       <tr *ngFor='let c of codes'>
        <td>{{ c.apiCode }}</td>
+       <td>{{ c.httpCode }}</td>
+       <td>{{ c.color }}</td>
+       <td>{{ c.uiMsg }}</td>
       </tr>
     </tbody>
   </table>
 
 </div>
+
+<!-- API error code -->
+<div>
+  <input [(ngModel)]='apiCode' name='apiCode' id='httpCode' (blur)='onApiErrorCode()' style='background: pink' placeholder="Enter API Error code"/>
+
+  <div style='color:green'>{{apiMsg}}</div>
+</div>
+
+<p style='clear: both;'></p>
+
+<!-- HTTP response code -->
+<div>
+    <input [(ngModel)]='httpCode' name='httpCode' id='httpCode' (blur)='onHttpCode()' style='background: lightgreen' placeholder="Enter Http response code"/>
+  
+    <div style='color: brown'>{{httpMsg}}</div>
+</div>
+
 
 
 
